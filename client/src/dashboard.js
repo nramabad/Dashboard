@@ -4,10 +4,10 @@ import React, { Component } from 'react';
 import './assets/stylesheets/dashboard.css';
 
 const NAME = "NAME";
-const EMAIL = "EMAIL";
-const DOMAIN = "DOMAIN";
-const LOCATION = "LOCATION";
-const MATH = "MATH";
+// const EMAIL = "EMAIL";
+// const DOMAIN = "DOMAIN";
+// const LOCATION = "LOCATION";
+// const MATH = "MATH";
 const TYPES = {
     NAME: "", 
     EMAIL: "", 
@@ -79,6 +79,7 @@ class Dashboard extends Component {
   }
 
   render() {
+    console.log(this.state)
     return (
       <div className="App">
         <header className="App-header">
