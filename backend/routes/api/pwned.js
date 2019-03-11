@@ -13,7 +13,7 @@ router.get('/:email', (req, res) => {
         req.params.email
       }`,
       (error, response, body) => {
-        console.log(body);
+        // console.log(body);
         if (response && response.statusCode == 200) {
           res.json({ msg: JSON.parse(body) });
         } else {

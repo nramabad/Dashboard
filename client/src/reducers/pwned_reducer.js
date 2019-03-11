@@ -5,9 +5,9 @@ const pwnedReducer = (state = {}, action) => {
 
     switch (action.type) {
         case RECEIVE_EMAIL:
-            return action.email;
+            return action.email.data.msg;
         case RECEIVE_DOMAIN:
-            return action.domain;
+            return action.domain.data.msg;
         default:
             return state;
     }

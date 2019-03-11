@@ -1,14 +1,14 @@
 import { RECEIVE_MATH } from '../actions/math_actions';
 
-const MathReducer = (state = {}, action) => {
+const mathReducer = (state = {}, action) => {
     Object.freeze(state);
 
     switch (action.type) {
         case RECEIVE_MATH:
-            return action.math;
+            return action.math.data.msg;
         default:
             return state;
     }
 };
 
-export default MathReducer;
+export default mathReducer;

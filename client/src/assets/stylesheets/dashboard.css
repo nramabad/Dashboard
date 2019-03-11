@@ -48,3 +48,21 @@
 .search-bar span {
   margin: 5px;
 }
+
+.search-bar button {
+  width: 80px;
+  z-index: 5;
+}
+
+.search-form input{
+  width: 300px;
+}
+
+.info-box {
+  margin: 70px;
+  background-color: whitesmoke;
+  height: 350px;
+  width: 350px;
+  border-radius: 10px;
+  z-index: 1;
+}

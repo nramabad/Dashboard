@@ -1,6 +1,6 @@
 import * as APIUtil from "../util/weather_api_util";
 
-export const RECEIVE_LOCATIONS = "RECEIVE_DOMAIN";
+export const RECEIVE_LOCATIONS = "RECEIVE_LOCATIONS";
 export const RECEIVE_WEATHER = "RECEIVE_WEATHER";
 
 export const receiveLocations = locations => ({
