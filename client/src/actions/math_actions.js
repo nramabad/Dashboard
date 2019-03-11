@@ -3,7 +3,7 @@ import * as APIUtil from "../util/math_api_util";
 export const RECEIVE_MATH = "RECEIVE_MATH";
 
 export const receiveMath = result => ({
-  type: RECEIVE_DOMAIN,
+  type: RECEIVE_MATH,
   result
 });
 

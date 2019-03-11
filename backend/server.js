@@ -19,7 +19,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 app.use("/api/weather", weather);
-app.use("/api/weather", pwned);
+app.use("/api/pwned", pwned);
 
 // console.log that your server is up and running
 const port = process.env.PORT || 5000;

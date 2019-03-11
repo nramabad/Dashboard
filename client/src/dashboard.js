@@ -3,17 +3,12 @@ import React, { Component } from 'react';
 // import logo from './assets/images/logo.svg';
 import './assets/stylesheets/dashboard.css';
 
-const NAME = "NAME";
-// const EMAIL = "EMAIL";
-// const DOMAIN = "DOMAIN";
-// const LOCATION = "LOCATION";
-// const MATH = "MATH";
 const TYPES = {
-    NAME: "", 
-    EMAIL: "", 
-    DOMAIN: "", 
-    LOCATION: "", 
-    MATH: ""
+    NAME: "Generate a new robot avatar from your name...", 
+    EMAIL: "Check if an e-mail has been pwned...", 
+    DOMAIN: "Check if a website domain has been pwned...", 
+    LOCATION: "Get the weather forecast in...", 
+    MATH: "Evaluate an arithmetic expression..."
   }
 
 class Dashboard extends Component {
@@ -27,7 +22,7 @@ class Dashboard extends Component {
       location: "",
       math: "",
       showMenu: false,
-      queryType: NAME
+      queryType: "NAME"
     };
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
@@ -71,7 +66,7 @@ class Dashboard extends Component {
   }
 
   handleKeyPress(e) {
-    if (e.charCode == 13) {
+    if (e.charCode === 13) {
       e.preventDefault();
       this.setState({ [this.state.queryType.toLowerCase()]: this.state.query })
       this.setState( { query: "" });
@@ -88,10 +83,13 @@ class Dashboard extends Component {
             className="App-logo"
             alt="logo"
           />
+          <br />Hello {this.state.name}!
           <div className="search-bar">
               <span>
                 <button onClick={this.showMenu}>
-                  {this.state.queryType}
+                  { (this.state.showMenu ? "▲ " : "▼ ")
+                    .concat(this.state.queryType)
+                    .concat(": ") }
                 </button>
 
                 {this.state.showMenu ? (
@@ -105,7 +103,7 @@ class Dashboard extends Component {
                   <input
                     type="text"
                     value={this.state.query}
-                    placeholder=" 🔍   Search..."
+                    placeholder={TYPES[this.state.queryType]}
                     onChange={this.handleChange()}
                     onKeyPress={e => this.handleKeyPress(e)}
                   />

@@ -11,7 +11,7 @@ router.get('/search/:location', (req, res) => {
       (error, response, body) => {
 
         if (response && response.statusCode == 200) {
-          res.json({ msg: JSON.parse(body)[0] });
+          res.json({ msg: JSON.parse(body) });
         } else {
           console.log("error:", error); // Print the error if one occurred
           console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
@@ -26,7 +26,7 @@ router.get('/:id', (req, res) => {
     (error, response, body) => {
 
       if (response && response.statusCode == 200) {
-        res.json({ msg: JSON.parse(body) });
+        res.json({ msg: JSON.parse(body).consolidated_weather });
       } else {
         console.log("error:", error); // Print the error if one occurred
         console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
