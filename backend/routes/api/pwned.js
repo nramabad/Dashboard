@@ -2,16 +2,25 @@ const express = require("express");
 const router = express.Router();
 const request = require("request");
 
+
 router.get("/test", (req, res) =>
   res.json({ msg: "This is the pwned test route" })
 );
 
+
 router.get('/:email', (req, res) => {
-    req.header("vnd.haveibeenpwned.v2+json");
+    // req.header("vnd.haveibeenpwned.v2+json");
+    let options = {
+        url: `https://haveibeenpwned.com/api/breachedaccount/${
+            req.params.email
+        }`,
+        headers: {
+            "User-Agent": "dashboard",
+            "Accept": "vnd.haveibeenpwned.v2+json"
+        }
+    };
     request(
-      `https://haveibeenpwned.com/api/dashboard/breachedaccount/${
-        req.params.email
-      }`,
+      options,
       (error, response, body) => {
         // console.log(body);
         if (response && response.statusCode == 200) {
