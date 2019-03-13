@@ -2,11 +2,11 @@ import React, { Component } from 'react';
 import './assets/stylesheets/dashboard.css';
 import Arithmetic from './components/arithmetic';
 import Pwned from './components/pwned';
-import Weather from './components/weather';
-import WeatherPeak from "./components/weather_peak";
+// import Weather from './components/weather';
+// import WeatherPeak from "./components/weather_peak";
 
 const TYPES = {
-  NAME: "Generate a new robot avatar from your name...", 
+  NAME: "Generate a new robot avatar with your name...", 
   EMAIL: "Check if an e-mail has been pwned...", 
   DOMAIN: "Check if a website domain has been pwned...", 
   LOCATION: "Get the weather forecast in...", 
@@ -82,8 +82,8 @@ class Dashboard extends Component {
 
     if (this.state.queryType !== clicked) {
       const key = clicked.toLowerCase()
-      let query_val = this.state[key] === "GUEST" ? "" : this.state[key];
-      this.setState({ query: query_val, queryType: clicked });
+      let queryVal = this.state[key] === "GUEST" ? "" : this.state[key];
+      this.setState({ query: queryVal, queryType: clicked });
 
     }
 
@@ -110,9 +110,9 @@ class Dashboard extends Component {
       case "NAME":
         return (
           <div className="small-show">
-            {name === "GUEST" ? 
-              "Don't be shy! What's your name?" : 
-              "We made a custom robot avatar just for you!"}
+            {name === "GUEST"
+              ? "Don't be shy! What's your name?"
+              : "We made a custom robot avatar just for you!"}
           </div>
         );
       case "EMAIL":
@@ -129,21 +129,16 @@ class Dashboard extends Component {
       case "LOCATION":
         return (
           <div className="small-show">Weather feature coming soon!</div>
-        );;
-        // <div className="options">
+        );
+        // <div className="option">
         // </div>
       case "MATH":
         return operation.length && math.length ? (
-          <Arithmetic
-            key={0}
-            math={math}
-            operation={operation}
-          /> ) : (
-          <div className="options">
-            {this.mathOperations()}
-          </div>
+          <Arithmetic key={1} expression={math} operation={operation} />
+        ) : (
+          <div className="option-height">{this.mathOperations()}</div>
         );
-      default: 
+      default:
         return no_show;
     }
   }
@@ -151,20 +146,32 @@ class Dashboard extends Component {
   mathOperations() {
     let trig_ops = [];
     const { query } = this.state;
+    const setMath = (option) =>
+      this.setState({ operation: option.toLowerCase(), math: query });
+    
     let alg_ops = Object.keys(ALG_OPS).map((option, idx) => (
-      <button key={idx} onClick={() => this.setState({ operation: option.toLowerCase(), math: query })}>
+      <button 
+        key={idx} 
+        onClick={() => setMath(option)} 
+        className="option">
         {ALG_OPS[option]}
       </button>
     ));
-    if (!query.match(/[a-z]/i)) {
-      trig_ops =Object.keys(TRIG_OPS).map((option, idx) => (
-        <button key={alg_ops.length + idx} onClick={() => this.setState({ operation: option.toLowerCase(), math: query })}>
+    if (!query.match(/[a-h]|[j-o]|[q-z]/i)) {
+      trig_ops = Object.keys(TRIG_OPS).map((option, idx) => (
+        <button
+          key={alg_ops.length + idx}
+          onClick={() => setMath(option)}
+          className="option"
+        >
           {TRIG_OPS[option]}
         </button>
       ));
     }
     return alg_ops.concat(trig_ops);
   }
+
+  
 
   render() {
     console.log(this.state)
@@ -176,7 +183,7 @@ class Dashboard extends Component {
             className="App-logo"
             alt="logo"
           />
-          <br />Hello {this.state.name}!
+          Hello {this.state.name}!
           <div className="search-bar">
               <span>
                 <button onClick={this.showMenu} className='menu-button'>

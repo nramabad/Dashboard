@@ -6,20 +6,26 @@
   /* animation: App-logo-spin infinite 20s linear; */
   height: 16vmin;
   border-radius: 100%;
-  background-color: whitesmoke;
+  background: rgb(245, 245, 245); /* Fallback for older browsers without RGBA-support */
+  background: rgba(245, 245, 245, 0.8);
   /* pointer-events: none; */
 }
 
 .App-header {
   padding-top: 40px;
+  background-image: url('https://source.unsplash.com/1600x900/?nature');
   background-color: #282c34;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   /* justify-content: center; */
-  font-size: calc(10px + 2vmin);
+  font-size: calc(40px + 2vmin);
   color: white;
+}
+
+.App-header img {
+  margin-bottom: 30px;
 }
 
 .App-link {
@@ -35,19 +41,53 @@
   }
 }
 
+@keyframes fadein {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+}
+
+@keyframes shift {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
 .menu {
+  display: flex;
+  flex-direction: column;
+  animation: fadein 2s;
+}
+
+/* .options {
+  
+  margin: 5px 5px 5px 5px;
+  overflow: hidden;
+} */
+.option-height {
   display: flex;
   flex-direction: column;
 }
 
-.options {
-  display: flex;
-  flex-direction: column;
+.option {
+  font-size: 20px;
+  color: rgb(59, 59, 59);
+  outline: 0;
+  border-width: 0 0 0px 0;
+  background: transparent;
+  border-bottom-color: lightgrey;
+  padding: 8px;
+}
+.option:hover {
+  background-color: lightcyan;
+  border-bottom-color: lightcyan;
+}
+.option:last-of-type {
+  border-width: 0;
 }
 
 .search-bar {
   display: flex;
   flex-direction: row;
+  
 }
 
 .search-bar span {
@@ -55,20 +95,65 @@
 }
 
 .search-bar button {
-  width: 88px;
+  width: 270px;
   z-index: 5;
+  font-size: 40px;
+  outline: 0;
+  border-width: 0;
+  text-align: right;
+  background: transparent;
+  color: white;
+
 }
 
+.search-bar button:hover {
+  color: lightskyblue;
+}
+
+
 .search-form input{
-  width: 300px;
+  width: 800px;
+  background: none;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: white;
+  color: white;
+  font-size: 40px;
+  font-style: bold;
+}
+
+.search-form input:focus {
+  color: lightskyblue;
+  border-color: lightskyblue
+}
+
+.search-form input::placeholder{
+  color: white;
+  font-style: bold;
 }
 
 .info-box {
-  margin: 70px;
-  background-color: whitesmoke;
-  color: grey;
+  margin-top: 4%;
+  margin-bottom: auto;
+  background: rgb(245, 245, 245); /* Fallback for older browsers without RGBA-support */
+  background: rgba(245, 245, 245, 0.8);
+  color: rgb(59, 59, 59);
   height: 350px;
-  width: 350px;
+  width: 85%;
   border-radius: 10px;
-  z-index: 1;
+  position: sticky;
+  overflow-y: scroll;
+  font-size: 30px;
+  animation: shift 2s;
+}
+
+#math {
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.small-show {
+  color: rgb(59, 59, 59);
+  font-size: 18px;
+  height: 309px;
+  line-height: 309px;
 }

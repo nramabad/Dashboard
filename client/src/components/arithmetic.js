@@ -5,26 +5,65 @@ import { fetchMath } from "../actions/math_actions";
 
 class Arithmetic extends React.Component {
   componentDidMount() {
-    const { math, operation } = this.props
-    this.props.fetchMath(operation, math)
+    const { expression, operation } = this.props
+    this.props.fetchMath(operation, expression)
   }
 
-  componentDidUpdate(prevProps) {
-    const { math, operation } = this.props;
-    if (math !== prevProps.math || operation !== prevProps.operation) {
-      this.props.fetchMath(operation, math);
-    }
-  }
+  // componentDidUpdate(prevProps) {
+  //   const { expression, operation } = this.props;
+  //   if (expression !== prevProps.math || operation !== prevProps.operation) {
+  //     this.props.fetchMath(operation, expression);
+  //   }
+  // }
 
+  beautifyMath(expression) {
+    let superScript = false;
+    let prettyExpression = [...expression].map((ch, idx) => {
+      if (ch === "^") superScript = true;
+      if (ch === " ") superScript = false;
+
+      if (!!ch.match(/[a-z]/i)) {
+        return superScript ? (
+          <sup>
+            <i key={idx}>{ch}</i>
+          </sup>
+        ) : (
+          <i key={idx}>{ch}</i>
+        );
+      } else if (ch !== "^") {
+        return superScript ? (
+          <sup key={idx}>{ch}</sup>
+        ) : (
+          <span key={idx}>{ch}</span>
+        );
+      }
+      return <span key={idx}></span>
+    });
+    return prettyExpression;
+  }
+  
   render() {
-    return (<></>)
+    if (this.props === undefined || this.props.math === null) {
+      return (<div className="small-show">Loading...</div>)
+    }
+    let { operation, expression, result } = this.props.math
+    operation = operation.charAt(0).toUpperCase() + operation.slice(1);
+    return (
+      <>
+        <br />
+        Operation: <div>{operation}</div>
+        <br />
+        Expression: <div id="math">{this.beautifyMath(expression)}</div>
+        <br />
+        Result: <div id="math">{this.beautifyMath(result)}</div>
+      </>
+    );
   }
 }
 
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    expression: ownProps.expression,
-    result: state.entities.math
+    math: state.entities.math
   };
 };
 
