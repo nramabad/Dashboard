@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 import { fetchWeather } from "../actions/weather_actions";
 
 class WeatherPeak extends React.Component {
-
+    // will display today's weather in the corner of page
 }
 
 const mapStateToProps = state => {

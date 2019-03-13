@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import './assets/stylesheets/dashboard.css';
 import Arithmetic from './components/arithmetic';
 import Pwned from './components/pwned';
+// For future weather implementation!
 // import Weather from './components/weather';
 // import WeatherPeak from "./components/weather_peak";
 
 const TYPES = {
-  NAME: "Generate a new robot avatar with your name...", 
+  NAME: "Type your name to make a new robot...", 
   EMAIL: "Check if an e-mail has been pwned...", 
   DOMAIN: "Check if a website domain has been pwned...", 
   LOCATION: "Get the weather forecast in...", 
@@ -19,8 +20,8 @@ const ALG_OPS = {
   DERIVE: "Derive expression",
   INTEGRATE: "Integrate expression",
   ZEROES: "Find zeroes where f(x) = 0",
-  TANGENT: "Find tangent @ x = c (Format: c|f(x))",
-  AREA: "Find area under curve from c to d (Format: c:d|f(x))",
+  TANGENT: "Find the tangent line @ x = c (Format: c|f(x))",
+  AREA: "Find the area under the curve from c to d (Format: c:d|f(x))",
 }
 
 const TRIG_OPS = {
@@ -48,11 +49,13 @@ class Dashboard extends Component {
       showMenu: false,
       queryType: "NAME"
     };
+
     this.showMenu = this.showMenu.bind(this);
     this.closeMenu = this.closeMenu.bind(this);
     this.menuDisplay = this.menuDisplay.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.handleSubmission = this.handleSubmission.bind(this);
     this.dialogueBox = this.dialogueBox.bind(this);
     this.mathOperations = this.mathOperations.bind(this);
   }
@@ -84,7 +87,6 @@ class Dashboard extends Component {
       const key = clicked.toLowerCase()
       let queryVal = this.state[key] === "GUEST" ? "" : this.state[key];
       this.setState({ query: queryVal, queryType: clicked });
-
     }
 
     return menuOptions;
@@ -98,14 +100,19 @@ class Dashboard extends Component {
 
   handleKeyPress(e) {
     if (e.charCode === 13) {
-      e.preventDefault();
-      this.setState({ [this.state.queryType.toLowerCase()]: this.state.query })
+      this.handleSubmission(e);
     }
   }
 
+  handleSubmission(e) {
+    e.preventDefault();
+    this.setState({ [this.state.queryType.toLowerCase()]: this.state.query });
+  }
+
   dialogueBox() {
-    const { name, location, math, operation, queryType } = this.state;
-    const no_show = (<div className="small-show">Nothing to show...</div>)
+    const { name, math, operation, queryType } = this.state;
+    const noShow = (<div className="small-show">Nothing to show...</div>)
+
     switch (queryType) {
       case "NAME":
         return (
@@ -124,14 +131,15 @@ class Dashboard extends Component {
             queryType={queryType}
           />
         ) : (
-          no_show
+          noShow
         );
       case "LOCATION":
+        // <div className="option">
+        //  {Weather Component would go here}
+        // </div>
         return (
           <div className="small-show">Weather feature coming soon!</div>
         );
-        // <div className="option">
-        // </div>
       case "MATH":
         return operation.length && math.length ? (
           <Arithmetic key={1} expression={math} operation={operation} />
@@ -139,13 +147,15 @@ class Dashboard extends Component {
           <div className="option-height">{this.mathOperations()}</div>
         );
       default:
-        return no_show;
+        return noShow;
     }
+
   }
 
   mathOperations() {
     let trig_ops = [];
     const { query } = this.state;
+
     const setMath = (option) =>
       this.setState({ operation: option.toLowerCase(), math: query });
     
@@ -157,6 +167,7 @@ class Dashboard extends Component {
         {ALG_OPS[option]}
       </button>
     ));
+
     if (!query.match(/[a-h]|[j-o]|[q-z]/i)) {
       trig_ops = Object.keys(TRIG_OPS).map((option, idx) => (
         <button
@@ -171,48 +182,55 @@ class Dashboard extends Component {
     return alg_ops.concat(trig_ops);
   }
 
-  
-
   render() {
-    console.log(this.state)
     return (
       <div className="App">
         <header className="App-header">
-          <img
-            src={`https://robohash.org/${this.state.name}`}
-            className="App-logo"
-            alt="logo"
-          />
+          <button
+            onClick={() => window.location.reload()}
+            className="robot"
+          >
+            <img
+              src={`https://robohash.org/${this.state.name}`}
+              className="App-logo"
+              alt="logo"
+            />
+          </button>
           Hello {this.state.name}!
           <div className="search-bar">
-              <span>
-                <button onClick={this.showMenu} className='menu-button'>
-                  { (this.state.showMenu ? "▲ " : "▼ ")
-                    .concat(this.state.queryType)
-                    .concat(": ") }
-                </button>
+            <span>
+              <button onClick={this.showMenu} className="menu-button">
+                {(this.state.showMenu ? "▲ " : "▼ ")
+                  .concat(this.state.queryType)
+                  .concat(": ")}
+              </button>
 
-                {this.state.showMenu ? (
-                  <div className="menu">
-                    {this.menuDisplay(this.state.queryType)}
-                  </div>
-                ) : null}
-              </span>
-              <span>
-                <form className="search-form">
-                  <input
-                    type="text"
-                    value={this.state.query}
-                    placeholder={TYPES[this.state.queryType]}
-                    onChange={this.handleChange()}
-                    onKeyPress={e => this.handleKeyPress(e)}
-                  />
-                </form>
-              </span>
+              {this.state.showMenu ? (
+                <div className="menu">
+                  {this.menuDisplay(this.state.queryType)}
+                </div>
+              ) : null}
+            </span>
+
+            <span>
+              <form className="search-form">
+                <input
+                  type="text"
+                  value={this.state.query}
+                  placeholder={TYPES[this.state.queryType]}
+                  onChange={this.handleChange()}
+                  onKeyPress={e => this.handleKeyPress(e)}
+                />
+              </form>
+            </span>
+
+            <span>
+              <button onClick={e => this.handleSubmission(e)} id="submit">
+                ⇒
+              </button>
+            </span>
           </div>
-          <div className="info-box">
-            {this.dialogueBox()}
-          </div>
+          <div className="info-box">{this.dialogueBox()}</div>
         </header>
       </div>
     );

@@ -7,5 +7,3 @@ export const getLocations = query => {
 export const getWeather = id => {
   return axios.get(`/api/weather/${id}`);
 };
-
-window.axios = axios;

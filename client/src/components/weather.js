@@ -5,6 +5,7 @@ import { fetchLocations, fetchWeather } from "../actions/weather_actions";
 
 class Weather extends React.Component {
 
+  // will give a full weather forecast in the info box
   componentDidMount() {
     const { location } = this.props;
   }

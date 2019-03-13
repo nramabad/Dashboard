@@ -7,5 +7,3 @@ export const getEmailPwnage = email => {
 export const getDomainPwnage = domain => {
     return axios.get(`https://haveibeenpwned.com/api/v2/breach/${domain}`);
 }
-
-window.axios = axios;

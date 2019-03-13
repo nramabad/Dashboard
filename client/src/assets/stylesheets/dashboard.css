@@ -3,12 +3,17 @@
 }
 
 .App-logo {
-  /* animation: App-logo-spin infinite 20s linear; */
   height: 16vmin;
   border-radius: 100%;
   background: rgb(245, 245, 245); /* Fallback for older browsers without RGBA-support */
   background: rgba(245, 245, 245, 0.8);
-  /* pointer-events: none; */
+
+}
+
+.App-logo:hover {
+  background: rgb(135, 206, 250); /* Fallback for older browsers without RGBA-support */
+  background: rgba(135, 206, 250, 0.8);
+  cursor: pointer;
 }
 
 .App-header {
@@ -19,7 +24,6 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* justify-content: center; */
   font-size: calc(40px + 2vmin);
   color: white;
 }
@@ -32,23 +36,9 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 @keyframes fadein {
     from { opacity: 0; }
     to   { opacity: 1; }
-}
-
-@keyframes shift {
-  from { opacity: 1; }
-  to   { opacity: 0; }
 }
 
 .menu {
@@ -57,11 +47,6 @@
   animation: fadein 2s;
 }
 
-/* .options {
-  
-  margin: 5px 5px 5px 5px;
-  overflow: hidden;
-} */
 .option-height {
   display: flex;
   flex-direction: column;
@@ -79,6 +64,7 @@
 .option:hover {
   background-color: lightcyan;
   border-bottom-color: lightcyan;
+  cursor: pointer;
 }
 .option:last-of-type {
   border-width: 0;
@@ -108,11 +94,12 @@
 
 .search-bar button:hover {
   color: lightskyblue;
+  cursor: pointer;
 }
 
 
 .search-form input{
-  width: 800px;
+  width: 670px;
   background: none;
   outline: 0;
   border-width: 0 0 2px;
@@ -144,7 +131,6 @@
   position: sticky;
   overflow-y: scroll;
   font-size: 30px;
-  animation: shift 2s;
 }
 
 #math {
@@ -156,4 +142,18 @@
   font-size: 18px;
   height: 309px;
   line-height: 309px;
+}
+
+.robot {
+  outline: 0;
+  border-width: 0;
+  background: transparent;
+}
+
+#submit {
+  /* background-color: lightskyblue; */
+  text-align: left;
+  width: 100px;
+  font-size: 40px;
+  border-radius: 2px;
 }

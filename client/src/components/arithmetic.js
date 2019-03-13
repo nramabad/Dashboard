@@ -9,20 +9,21 @@ class Arithmetic extends React.Component {
     this.props.fetchMath(operation, expression)
   }
 
-  // componentDidUpdate(prevProps) {
-  //   const { expression, operation } = this.props;
-  //   if (expression !== prevProps.math || operation !== prevProps.operation) {
-  //     this.props.fetchMath(operation, expression);
-  //   }
-  // }
+  componentDidUpdate(prevProps) {
+    const { expression, operation } = this.props;
+    if (expression !== prevProps.expression || operation !== prevProps.operation) {
+      this.props.fetchMath(operation, expression);
+    }
+  }
 
   beautifyMath(expression) {
     let superScript = false;
-    let prettyExpression = [...expression].map((ch, idx) => {
+    const prettyExpression = [...expression].map((ch, idx) => {
       if (ch === "^") superScript = true;
       if (ch === " ") superScript = false;
 
       if (!!ch.match(/[a-z]/i)) {
+
         return superScript ? (
           <sup>
             <i key={idx}>{ch}</i>
@@ -31,23 +32,27 @@ class Arithmetic extends React.Component {
           <i key={idx}>{ch}</i>
         );
       } else if (ch !== "^") {
+
         return superScript ? (
           <sup key={idx}>{ch}</sup>
         ) : (
           <span key={idx}>{ch}</span>
         );
       }
+
       return <span key={idx}></span>
     });
     return prettyExpression;
   }
   
   render() {
-    if (this.props === undefined || this.props.math === null) {
+    if (!this.props || !this.props.math) {
       return (<div className="small-show">Loading...</div>)
     }
+
     let { operation, expression, result } = this.props.math
     operation = operation.charAt(0).toUpperCase() + operation.slice(1);
+
     return (
       <>
         <br />
