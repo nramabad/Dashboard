@@ -1,6 +1,6 @@
 import { RECEIVE_LOCATIONS, RECEIVE_WEATHER } from "../actions/weather_actions";
 
-const weatherReducer = (state = {}, action) => {
+const weatherReducer = (state = null, action) => {
     Object.freeze(state);
     switch (action.type) {
         case RECEIVE_LOCATIONS:

@@ -6,17 +6,17 @@ import { fetchLocations, fetchWeather } from "../actions/weather_actions";
 class Weather extends React.Component {
 
   componentDidMount() {
-    // this.props.requestAllPokemon();
+    const { location } = this.props;
   }
 
   componentDidUpdate(prevProps) {
-    // if (this.props.types.length !== prevProps.types.length) {
-    //   this.props.types.forEach(type => this.props.requestOneType(type));
-    // }
+    const { location } = this.props;
+    if (location !== prevProps.location) {
+    }
   }
 
   render() {
-    return (<></>);
+    return <></>;
   }
 }
 

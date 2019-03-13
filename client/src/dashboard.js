@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-// import { Route, withRouter, Link, Switch } from "react-router-dom";
-// import logo from './assets/images/logo.svg';
 import './assets/stylesheets/dashboard.css';
 import Arithmetic from './components/arithmetic';
 import Pwned from './components/pwned';
@@ -15,6 +13,27 @@ const TYPES = {
   MATH: "Evaluate an arithmetic expression..."
 }
 
+const ALG_OPS = {
+  SIMPLIFY: "Simplify expression",
+  FACTOR: "Factorize expression",
+  DERIVE: "Derive expression",
+  INTEGRATE: "Integrate expression",
+  ZEROES: "Find zeroes where f(x) = 0",
+  TANGENT: "Find tangent @ x = c (Format: c|f(x))",
+  AREA: "Find area under curve from c to d (Format: c:d|f(x))",
+}
+
+const TRIG_OPS = {
+  COS: "Cosine of numerical value",
+  SIN: "Sine of numerical value",
+  TAN: "Tangent of numerical value",
+  ARCCOS: "Inverse cosine of numerical value",
+  ARCSIN: "Inverse Sine of numerical value",
+  ARCTAN: "Inverse Tangent of numerical value",
+  ABS: "Absolute value of numerical value",
+  LOG: "Logarithm of numerical value"
+};
+
 class Dashboard extends Component {
   constructor(props) {
     super(props);
@@ -25,6 +44,7 @@ class Dashboard extends Component {
       domain: "",
       location: "",
       math: "",
+      operation: "",
       showMenu: false,
       queryType: "NAME"
     };
@@ -33,6 +53,8 @@ class Dashboard extends Component {
     this.menuDisplay = this.menuDisplay.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleKeyPress = this.handleKeyPress.bind(this);
+    this.dialogueBox = this.dialogueBox.bind(this);
+    this.mathOperations = this.mathOperations.bind(this);
   }
 
   showMenu(e) {
@@ -58,7 +80,12 @@ class Dashboard extends Component {
         </button>
       ));
 
-    if (this.state.queryType !== clicked) this.setState({ queryType: clicked });
+    if (this.state.queryType !== clicked) {
+      const key = clicked.toLowerCase()
+      let query_val = this.state[key] === "GUEST" ? "" : this.state[key];
+      this.setState({ query: query_val, queryType: clicked });
+
+    }
 
     return menuOptions;
   }
@@ -73,8 +100,70 @@ class Dashboard extends Component {
     if (e.charCode === 13) {
       e.preventDefault();
       this.setState({ [this.state.queryType.toLowerCase()]: this.state.query })
-      this.setState( { query: "" });
     }
+  }
+
+  dialogueBox() {
+    const { name, location, math, operation, queryType } = this.state;
+    const no_show = (<div className="small-show">Nothing to show...</div>)
+    switch (queryType) {
+      case "NAME":
+        return (
+          <div className="small-show">
+            {name === "GUEST" ? 
+              "Don't be shy! What's your name?" : 
+              "We made a custom robot avatar just for you!"}
+          </div>
+        );
+      case "EMAIL":
+      case "DOMAIN":
+        return this.state[queryType.toLowerCase()].length ? (
+          <Pwned
+            key={0}
+            query={this.state[queryType.toLowerCase()]}
+            queryType={queryType}
+          />
+        ) : (
+          no_show
+        );
+      case "LOCATION":
+        return (
+          <div className="small-show">Weather feature coming soon!</div>
+        );;
+        // <div className="options">
+        // </div>
+      case "MATH":
+        return operation.length && math.length ? (
+          <Arithmetic
+            key={0}
+            math={math}
+            operation={operation}
+          /> ) : (
+          <div className="options">
+            {this.mathOperations()}
+          </div>
+        );
+      default: 
+        return no_show;
+    }
+  }
+
+  mathOperations() {
+    let trig_ops = [];
+    const { query } = this.state;
+    let alg_ops = Object.keys(ALG_OPS).map((option, idx) => (
+      <button key={idx} onClick={() => this.setState({ operation: option.toLowerCase(), math: query })}>
+        {ALG_OPS[option]}
+      </button>
+    ));
+    if (!query.match(/[a-z]/i)) {
+      trig_ops =Object.keys(TRIG_OPS).map((option, idx) => (
+        <button key={alg_ops.length + idx} onClick={() => this.setState({ operation: option.toLowerCase(), math: query })}>
+          {TRIG_OPS[option]}
+        </button>
+      ));
+    }
+    return alg_ops.concat(trig_ops);
   }
 
   render() {
@@ -115,6 +204,7 @@ class Dashboard extends Component {
               </span>
           </div>
           <div className="info-box">
+            {this.dialogueBox()}
           </div>
         </header>
       </div>

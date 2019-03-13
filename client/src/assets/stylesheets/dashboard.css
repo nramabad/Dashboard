@@ -40,6 +40,11 @@
   flex-direction: column;
 }
 
+.options {
+  display: flex;
+  flex-direction: column;
+}
+
 .search-bar {
   display: flex;
   flex-direction: row;
@@ -50,7 +55,7 @@
 }
 
 .search-bar button {
-  width: 80px;
+  width: 88px;
   z-index: 5;
 }
 
@@ -61,6 +66,7 @@
 .info-box {
   margin: 70px;
   background-color: whitesmoke;
+  color: grey;
   height: 350px;
   width: 350px;
   border-radius: 10px;
