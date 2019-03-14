@@ -61,7 +61,7 @@ class Pwned extends React.Component {
             );
         }
         const toHTML = `<section className='pwned' >${this.props[queryType.toLowerCase()].Description}</section>`;
-        return (<span dangerouslySetInnerHTML={{ __html: toHTML }} />);
+        return (<span id="embedded-html" dangerouslySetInnerHTML={{ __html: toHTML }} />);
     }
 }
 
