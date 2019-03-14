@@ -49,7 +49,8 @@ A few User Interface tweaks would rely improve the overall flow, allowing user's
 
 [Documentation for this endpoint](https://haveibeenpwned.com/API/v2#BreachesForAccount) indicate [CORS access](https://haveibeenpwned.com/API/v2#CORS) for API calls from the browser/frontend. Furthermore, the [test example](https://haveibeenpwned.com/api/v2/breachedaccount/test@example.com?domain=adobe.com) is broken.
 
-```router.get('/:email', (req, res) => {
+```
+router.get('/:email', (req, res) => {
     let options = {
         headers: {
             "User-Agent": "dashboard",
@@ -69,7 +70,8 @@ A few User Interface tweaks would rely improve the overall flow, allowing user's
         }
       }
     );
-}); ```
+});
+```
 
 #### List of Buttons to Select the type of Arithmetic Operation
 
@@ -77,7 +79,8 @@ The Newton API requires an operation and an mathematical expression. However, it
 
 For that reason, Calculus operations are always available while Trigonometric operations are only available when no letter characters (apart from 'p' and 'i') are present in the math expression query.
 
-```mathOperations() {
+```
+mathOperations() {
     let trig_ops = [];
     const { query } = this.state;
 
@@ -109,4 +112,5 @@ For that reason, Calculus operations are always available while Trigonometric op
       ));
     }
     return alg_ops.concat(trig_ops);
-  }```
+  }
+```
