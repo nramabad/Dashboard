@@ -32,4 +32,10 @@ This, however, did require a re-think after initial API tests indicated a mismat
 
 #### UI/UX Choices
 
+The Momentum browser extension for Chrome was a strong inspiration. Dashboard's clean interface and scenic imagery makes it a natural choice for browser homepage. However, it contains tools more powerful than Momentum. By retaining a single information box that toggles for various widgets/tools, Dashboard remains approachable to the user while lending itself to addition of more powerful tools over time.
+
 ### Future Plans
+
+Weather implementation is a large feature to be rolled out soon. Everything necessary for its implementation apart from the React Component already exists in the Dashboard codebase. Users will be able to get weather by location. Users could enter a the partial or full name of a city/destination and choose from a list of location query matches. Alternatively, users that enable the application's access of their geolocation can rely on the application to do all the work. Geolocation data will automatically grab and find relevant weather forecasts. Finally, a weather peak component will exist in the top right corner to indicate today's prevailing weather.
+
+A few User Interface tweaks would rely improve the overall flow, allowing user's to seemlessly flow forward and backward between widgets, menus and results. Finally, User Authentication with a proper database would allow repeat users save and persist their customizations and choices. They could even save prior work, API usage and results.
