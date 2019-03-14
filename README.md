@@ -1,6 +1,8 @@
 # Dashboard
 #### By Navaneet (Nav) Ramabadran
 
+
+
 Dashboard is a web application that assists users by consolidating basic tools in one clean, user-friendly page. The current major widgets come in two flavors, personal identity protection/security and a simplified WolframAlpha analogue. More features are just around the corner!
 
 ### Technologies
