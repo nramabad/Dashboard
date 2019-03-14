@@ -3,16 +3,20 @@ const app = express();
 const bodyParser = require("body-parser");
 
 const expressip = require("express-ip");
-// const path = require("path");
+const path = require("path");
 const weather = require("./routes/api/weather");
 const pwned = require("./routes/api/pwned");
 
+// app.use(express.static("../client/build/index"));
+// app.use(express.static("../client/build/static/js/2.4203687f.chunk.js"));
+// app.use(express.static("../client/build/static/css/main.7c11b0f9.chunk.css"));
 // app.use(expressip.getIpInfoMiddleware);
 app.get("/", (req, res) => {
 //   const ipInfo = req.ipInfo;
 //   console.log(ipInfo)
 //   var message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
   res.send("HAI");
+    // res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
 app.use(bodyParser.urlencoded({ extended: false }));
