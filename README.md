@@ -7,7 +7,7 @@ Dashboard is a web application that assists users by consolidating basic tools i
 
 ### Technologies
 
-React.js, Redux.js, Node.js, Robohash API, Metaweather API, Newton Microservice API, HaveIBeenPwned API, Unsplash Image API
+React.js, Redux.js, Express.js, Node.js, Robohash API, Metaweather API, Newton Microservice API, HaveIBeenPwned API, Unsplash Image API
 
 ### Features
 
