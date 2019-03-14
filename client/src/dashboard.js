@@ -47,7 +47,7 @@ class Dashboard extends Component {
       math: "",
       operation: "",
       showMenu: false,
-      queryType: "NAME"
+      queryType: "NAME" // default widget is changing user name
     };
 
     this.showMenu = this.showMenu.bind(this);
@@ -75,6 +75,7 @@ class Dashboard extends Component {
   }
 
   menuDisplay(clicked) {
+    // map menu buttons for options not currently selected
     const menuOptions = Object.keys(TYPES)
       .filter(option => option !== clicked)
       .map((option, idx) => (
@@ -83,6 +84,7 @@ class Dashboard extends Component {
         </button>
       ));
 
+    // set the current widget in use to the one selected by the user
     if (this.state.queryType !== clicked) {
       const key = clicked.toLowerCase()
       let queryVal = this.state[key] === "GUEST" ? "" : this.state[key];
@@ -113,6 +115,7 @@ class Dashboard extends Component {
     const { name, math, operation, queryType } = this.state;
     const noShow = (<div className="small-show">Nothing to show...</div>)
 
+    // populates information box based on user input and selected widget
     switch (queryType) {
       case "NAME":
         return (
@@ -135,7 +138,7 @@ class Dashboard extends Component {
         );
       case "LOCATION":
         // <div className="option">
-        //  {Weather Component would go here}
+        //  {Weather Component will go here}
         // </div>
         return (
           <div className="small-show">Weather feature coming soon!</div>
@@ -156,9 +159,11 @@ class Dashboard extends Component {
     let trig_ops = [];
     const { query } = this.state;
 
+    // onClick fn to set the selected math operation and inputted expression
     const setMath = (option) =>
       this.setState({ operation: option.toLowerCase(), math: query });
     
+    // buttons for Calculus operations 
     let alg_ops = Object.keys(ALG_OPS).map((option, idx) => (
       <button 
         key={idx} 
@@ -168,6 +173,8 @@ class Dashboard extends Component {
       </button>
     ));
 
+    // buttons for Trigonometric operations do not appear for variables (x, y, z)
+    // p and i are excluded so the user may input pi for π
     if (!query.match(/[a-h]|[j-o]|[q-z]/i)) {
       trig_ops = Object.keys(TRIG_OPS).map((option, idx) => (
         <button
@@ -201,8 +208,7 @@ class Dashboard extends Component {
             <span>
               <button onClick={this.showMenu} className="menu-button">
                 {(this.state.showMenu ? "▲ " : "▼ ")
-                  .concat(this.state.queryType)
-                  .concat(": ")}
+                  .concat(`${this.state.queryType}: `)}
               </button>
 
               {this.state.showMenu ? (

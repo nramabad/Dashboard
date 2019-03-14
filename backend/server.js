@@ -17,16 +17,13 @@ app.use(staticFiles);
 
 app.use("/*", staticFiles);
 
-// app.use(express.static("../client/build/index"));
-// app.use(express.static("../client/build/static/js/2.4203687f.chunk.js"));
-// app.use(express.static("../client/build/static/css/main.7c11b0f9.chunk.css"));
+// returns geolocation for default user weather information
 // app.use(expressip.getIpInfoMiddleware);
 app.get("/", (req, res) => {
 //   const ipInfo = req.ipInfo;
 //   console.log(ipInfo)
 //   var message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
-  res.send("HAI");
-    // res.sendFile(path.join(__dirname + '/../client/build/index.html'));
+  res.send("hai. welcome to the backend. ;)");
 });
 
 // console.log that your server is up and running

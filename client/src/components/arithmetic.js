@@ -17,13 +17,16 @@ class Arithmetic extends React.Component {
   }
 
   beautifyMath(expression) {
-    let superScript = false;
+    // boolean for when a value should be in superscript
+    let superScript = false; 
+
+    // an array of mapped react objects for prettified math expressions
     const prettyExpression = [...expression].map((ch, idx) => {
       if (ch === "^") superScript = true;
-      if (ch === " ") superScript = false;
+      if (" -+*/".includes(ch)) superScript = false;
 
       if (!!ch.match(/[a-z]/i)) {
-
+        // variables and letters are italicized
         return superScript ? (
           <sup>
             <i key={idx}>{ch}</i>
@@ -32,7 +35,7 @@ class Arithmetic extends React.Component {
           <i key={idx}>{ch}</i>
         );
       } else if (ch !== "^") {
-
+        // all characters/numbers undergo the check for superscript
         return superScript ? (
           <sup key={idx}>{ch}</sup>
         ) : (

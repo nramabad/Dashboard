@@ -6,6 +6,8 @@ import { fetchEmail, fetchDomain } from "../actions/pwned_actions";
 class Pwned extends React.Component {
     componentDidMount() {
         let { query, queryType } = this.props
+
+        // check for which HaveIBeenPwned API to use
         switch (queryType) {
             case "EMAIL":
                 this.props.fetchEmail(query);
