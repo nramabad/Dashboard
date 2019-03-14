@@ -43,6 +43,8 @@ Weather implementation is a large feature to be rolled out soon. Everything nece
 
 A few User Interface tweaks would rely improve the overall flow, allowing user's to seemlessly flow forward and backward between widgets, menus and results. Finally, User Authentication with a proper database would allow repeat users save and persist their customizations and choices. They could even save prior work, API usage and results.
 
+Other neat features would be a digital clock, notepad in the info box and inspirational quotes.
+
 ### Code Snippets
 
 #### HaveIBeenPwned {breachedaccount} API Endpoint & Backend Route w/ User-Agent Headers
