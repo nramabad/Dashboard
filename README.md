@@ -119,7 +119,9 @@ For that reason, Calculus operations are always available while Trigonometric op
 
 #### Beautifying Math Expressions
 
-This function in the arithmetic component beautifies math expression by moving items following a "^" into the superscript. The current code does not however beautify expressions with regard to parantheses and remains an addition for a later time.
+This function in the arithmetic component beautifies math expression by moving items following a "^" into the superscript. The current code does not however beautify expressions with regard to parantheses.
+
+Neither does the current application check for valid parantheses when submitting an expression to the Newton API and remains an addition for a later time. The most common and efficient iteration of checking valid parantheses employs a simple stack data structure.
 
 ```
   beautifyMath(expression) {
