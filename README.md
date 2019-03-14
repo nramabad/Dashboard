@@ -11,7 +11,7 @@ React.js, Redux.js, Express.js, Node.js, Robohash API, Metaweather API, Newton M
 
 ### Features
 
-HaveIBeenPwned API integration enables users to stay on top of their cyberidentity by searching for instances of vulnerability by email account or website domain. The Calculus and Trigonometry widget beautify math expressions returned by the Newton API.
+HaveIBeenPwned API integration enables users to stay on top of their cyberidentity by searching for instances of vulnerability by email account or website domain (ex. Adobe). The Calculus and Trigonometry widget beautify math expressions returned by the Newton API.
 
 Dashboard gives its user the ability to add a personal touch to their dashboard. Dashboard generates a new Robot Avatar for each user when they enter a new name. In the same vein, each visit to the Dashboard site loads a new professional-quality background image from the Unsplash Image API.
 
@@ -42,3 +42,71 @@ The Momentum browser extension for Chrome was a strong inspiration. Dashboard's 
 Weather implementation is a large feature to be rolled out soon. Everything necessary for its implementation apart from the React Component already exists in the Dashboard codebase. Users will be able to get weather by location. Users could enter a the partial or full name of a city/destination and choose from a list of location query matches. Alternatively, users that enable the application's access of their geolocation can rely on the application to do all the work. Geolocation data will automatically grab and find relevant weather forecasts. Finally, a weather peak component will exist in the top right corner to indicate today's prevailing weather.
 
 A few User Interface tweaks would rely improve the overall flow, allowing user's to seemlessly flow forward and backward between widgets, menus and results. Finally, User Authentication with a proper database would allow repeat users save and persist their customizations and choices. They could even save prior work, API usage and results.
+
+### Code Snippets
+
+#### HaveIBeenPwned {breachedaccount} API Endpoint & Backend Route w/ User-Agent Headers
+
+[Documentation for this endpoint](https://haveibeenpwned.com/API/v2#BreachesForAccount) indicate [CORS access](https://haveibeenpwned.com/API/v2#CORS) for API calls from the browser/frontend. Furthermore, the [test example](https://haveibeenpwned.com/api/v2/breachedaccount/test@example.com?domain=adobe.com) is broken.
+
+```router.get('/:email', (req, res) => {
+    let options = {
+        headers: {
+            "User-Agent": "dashboard",
+            "Accept": "vnd.haveibeenpwned.v2+json"
+        },
+        url: `https://haveibeenpwned.com/api/breachedaccount/${req.params.email}`
+    };
+    request(
+      options,
+      (error, response, body) => {
+        // console.log(body);
+        if (response && response.statusCode == 200) {
+          res.json({ msg: JSON.parse(body) });
+        } else {
+          console.log("error:", error); // Print the error if one occurred
+          console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+        }
+      }
+    );
+}); ```
+
+#### List of Buttons to Select the type of Arithmetic Operation
+
+The Newton API requires an operation and an mathematical expression. However, it can handle both Calculus and Trigonometric operations through the same interface. This can create issues if performing a Trigonometric operation on an expression with variables (ex. tan(x)). Newton does allow for the use of 'pi' to express π for all operations.
+
+For that reason, Calculus operations are always available while Trigonometric operations are only available when no letter characters (apart from 'p' and 'i') are present in the math expression query.
+
+```mathOperations() {
+    let trig_ops = [];
+    const { query } = this.state;
+
+    // onClick fn to set the selected math operation and inputted expression
+    const setMath = (option) =>
+      this.setState({ operation: option.toLowerCase(), math: query });
+    
+    // buttons for Calculus operations 
+    let alg_ops = Object.keys(ALG_OPS).map((option, idx) => (
+      <button 
+        key={idx} 
+        onClick={() => setMath(option)} 
+        className="option">
+        {ALG_OPS[option]}
+      </button>
+    ));
+
+    // buttons for Trigonometric operations do not appear for variables (x, y, z)
+    // p and i are excluded so the user may input pi for π
+    if (!query.match(/[a-h]|[j-o]|[q-z]/i)) {
+      trig_ops = Object.keys(TRIG_OPS).map((option, idx) => (
+        <button
+          key={alg_ops.length + idx}
+          onClick={() => setMath(option)}
+          className="option"
+        >
+          {TRIG_OPS[option]}
+        </button>
+      ));
+    }
+    return alg_ops.concat(trig_ops);
+  }```
