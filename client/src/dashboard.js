@@ -10,7 +10,7 @@ const TYPES = {
   NAME: "Type your name to make a new robot...", 
   EMAIL: "Check if an e-mail has been pwned...", 
   DOMAIN: "Check if a website domain has been pwned...", 
-  LOCATION: "Get the weather forecast in...", 
+  LOCATION: "Weather feature coming soon...", 
   MATH: "Evaluate an arithmetic expression..."
 }
 
