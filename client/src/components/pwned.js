@@ -43,7 +43,7 @@ class Pwned extends React.Component {
     }
 
     render() {
-        const { queryType } = this.props;
+        const { query, queryType } = this.props;
         
         if (this.props === undefined) {
             return <div className="small-show">Loading...</div>;
@@ -52,6 +52,8 @@ class Pwned extends React.Component {
         } else if (Array.isArray(this.props[queryType.toLowerCase()])) {
             return (
                 <section className="pwned">
+                    <br />
+                    {query} has been pwned by:
                     <ul>
                         {this.props[queryType.toLowerCase()].map((site, idx) => (
                             <li key={idx}>{site}</li>
