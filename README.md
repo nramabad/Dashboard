@@ -41,6 +41,8 @@ The Momentum browser extension for Chrome was a strong inspiration. Dashboard's 
 
 Weather implementation is a large feature to be rolled out soon. Everything necessary for its implementation apart from the React Component already exists in the Dashboard codebase. Users will be able to get weather by location. Users could enter a the partial or full name of a city/destination and choose from a list of location query matches. Alternatively, users that enable the application's access of their geolocation can rely on the application to do all the work. Geolocation data will automatically grab and find relevant weather forecasts. Finally, a weather peak component will exist in the top right corner to indicate today's prevailing weather.
 
+Currently error handling is not explicitly performed. Future work would change backend routes to send JSON errors and frontend reducers to correctly handle errors across all actions. From there, errors can be displayed appropriately in the component.
+
 A few User Interface tweaks would rely improve the overall flow, allowing user's to seemlessly flow forward and backward between widgets, menus and results. Finally, User Authentication with a proper database would allow repeat users save and persist their customizations and choices. They could even save prior work, API usage and results.
 
 Other neat features would be a digital clock, notepad in the info box and inspirational quotes.
@@ -67,8 +69,10 @@ Other neat features would be a digital clock, notepad in the info box and inspir
         if (response && response.statusCode == 200) {
           res.json({ msg: JSON.parse(body) });
         } else {
-          console.log("error:", error); // Print the error if one occurred
-          console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was                  received
+          // Print the error if one occurred
+          console.log("error:", error);
+          // Print the response status code if a response was received
+          console.log("statusCode:", response && response.statusCode);
         }
       }
     );
