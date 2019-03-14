@@ -50,7 +50,7 @@ A few User Interface tweaks would rely improve the overall flow, allowing user's
 [Documentation for this endpoint](https://haveibeenpwned.com/API/v2#BreachesForAccount) indicate [CORS access](https://haveibeenpwned.com/API/v2#CORS) for API calls from the browser/frontend. Furthermore, the [test example](https://haveibeenpwned.com/api/v2/breachedaccount/test@example.com?domain=adobe.com) is broken.
 
 ```
-router.get('/:email', (req, res) => {
+  router.get('/:email', (req, res) => {
     let options = {
         headers: {
             "User-Agent": "dashboard",
@@ -66,7 +66,7 @@ router.get('/:email', (req, res) => {
           res.json({ msg: JSON.parse(body) });
         } else {
           console.log("error:", error); // Print the error if one occurred
-          console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was received
+          console.log("statusCode:", response && response.statusCode); // Print the response status code if a response was                  received
         }
       }
     );
@@ -80,7 +80,7 @@ The Newton API requires an operation and an mathematical expression. However, it
 For that reason, Calculus operations are always available while Trigonometric operations are only available when no letter characters (apart from 'p' and 'i') are present in the math expression query.
 
 ```
-mathOperations() {
+  mathOperations() {
     let trig_ops = [];
     const { query } = this.state;
 
@@ -113,4 +113,55 @@ mathOperations() {
     }
     return alg_ops.concat(trig_ops);
   }
+```
+
+#### Beautifying Math Expressions
+
+This function in the arithmetic component beautifies math expression by moving items following a "^" into the superscript. The current code does not however beautify expressions with regard to parantheses and remains an addition for a later time.
+
+```
+  beautifyMath(expression) {
+    // boolean for when a value should be in superscript
+    let superScript = false; 
+
+    // an array of mapped react objects for prettified math expressions
+    const prettyExpression = [...expression].map((ch, idx) => {
+      if (ch === "^") superScript = true;
+      if (" -+*/".includes(ch)) superScript = false;
+
+      if (!!ch.match(/[a-z]/i)) {
+        // variables and letters are italicized
+        return superScript ? (
+          <sup>
+            <i key={idx}>{ch}</i>
+          </sup>
+        ) : (
+          <i key={idx}>{ch}</i>
+        );
+      } else if (ch !== "^") {
+        // all characters/numbers undergo the check for superscript
+        return superScript ? (
+          <sup key={idx}>{ch}</sup>
+        ) : (
+          <span key={idx}>{ch}</span>
+        );
+      }
+
+      return <span key={idx}></span>
+    });
+    return prettyExpression;
+  }
+```
+
+#### HaveIBeenPwned Domain API-Valid Inputs
+
+The Domain API Endpoint does not provide for '.com' or 'www.' and instead requires the lone domain (ex. 'Adobe'). Hence, queries are sliced by "." and returns the string before the last period.
+
+```
+  case "DOMAIN":
+    if (query.includes(".")) {
+        query = query.split(".").slice(-2, -1);
+    }
+    this.props.fetchDomain(query);
+    break;
 ```
