@@ -157,3 +157,10 @@
   font-size: 40px;
   border-radius: 2px;
 }
+
+.pwned ul{
+  list-style-type: none;
+  color: rgb(59, 59, 59);
+  font-size: 30px;
+  margin-left: -40px;
+}

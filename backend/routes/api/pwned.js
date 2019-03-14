@@ -9,15 +9,12 @@ router.get("/test", (req, res) =>
 
 
 router.get('/:email', (req, res) => {
-    // req.header("vnd.haveibeenpwned.v2+json");
     let options = {
-        url: `https://haveibeenpwned.com/api/breachedaccount/${
-            req.params.email
-        }`,
         headers: {
             "User-Agent": "dashboard",
             "Accept": "vnd.haveibeenpwned.v2+json"
-        }
+        },
+        url: `https://haveibeenpwned.com/api/breachedaccount/${req.params.email}`
     };
     request(
       options,
