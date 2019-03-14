@@ -7,6 +7,14 @@ const path = require("path");
 const weather = require("./routes/api/weather");
 const pwned = require("./routes/api/pwned");
 
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+
+const staticFiles = express.static(path.join(__dirname, "../../client/build"));
+app.use(staticFiles);
+
+app.use("/*", staticFiles);
+
 // app.use(express.static("../client/build/index"));
 // app.use(express.static("../client/build/static/js/2.4203687f.chunk.js"));
 // app.use(express.static("../client/build/static/css/main.7c11b0f9.chunk.css"));
@@ -19,8 +27,7 @@ app.get("/", (req, res) => {
     // res.sendFile(path.join(__dirname + '/../client/build/index.html'));
 });
 
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json());
+
 
 app.use("/api/weather", weather);
 app.use("/api/pwned", pwned);
