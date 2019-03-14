@@ -27,9 +27,9 @@ Both, the Robohash and the Unsplash Image APIs support direct API URL embedding 
   
 Conversely, the Metaweather API expressly forbids CORS necessitating route in the Node backend. Frontend API Utils for weather/location data, in turn, access API data through these backend routes. 
 
-Now, the HaveIBeenPwned API documentation unequivocally expresses the lack of authorization, API rate limits or blocking of CORS application accessability for ALL endpoints.
+Now, the HaveIBeenPwned API documentation unequivocally expresses the lack of authorization, API rate limits or blocking of CORS application accessability across ALL endpoints.
 
-This is not true. As of January 27th, the breached account endpoint no longer supports CORS and requires API requests to include a User-Agent header. This does not apply for other endpoints such as the Domain endpoint which remains fully CORS-enabled. 
+This is not true. As of January 27th, the breached account endpoint no longer supports CORS and requires API requests to each include a User-Agent header. This does not apply for other endpoints such as the Domain endpoint which remains fully CORS-enabled. 
 
 This, however, did require a re-think after initial API tests indicated a mismatch between error status codes the API returned with the response data and documentation on the endpoint.
 
