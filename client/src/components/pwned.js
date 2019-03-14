@@ -60,7 +60,10 @@ class Pwned extends React.Component {
                 </section>
             );
         }
-        const toHTML = `<section className='pwned' >${this.props[queryType.toLowerCase()].Description}</section>`;
+        const toHTML = `<section className='pwned' >
+                            ${this.props[queryType.toLowerCase()].Description}
+                        </section>`;
+                        
         return (<span id="embedded-html" dangerouslySetInnerHTML={{ __html: toHTML }} />);
     }
 }

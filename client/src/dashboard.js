@@ -193,6 +193,7 @@ class Dashboard extends Component {
     return (
       <div className="App">
         <header className="App-header">
+
           <button
             onClick={() => window.location.reload()}
             className="robot"
@@ -203,8 +204,10 @@ class Dashboard extends Component {
               alt="logo"
             />
           </button>
+
           Hello {this.state.name}!
           <div className="search-bar">
+
             <span>
               <button onClick={this.showMenu} className="menu-button">
                 {(this.state.showMenu ? "▲ " : "▼ ")
@@ -235,7 +238,9 @@ class Dashboard extends Component {
                 ⇒
               </button>
             </span>
+
           </div>
+          
           <div className="info-box">{this.dialogueBox()}</div>
         </header>
       </div>

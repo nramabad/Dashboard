@@ -2,7 +2,6 @@ const express = require("express");
 const app = express();
 const bodyParser = require("body-parser");
 
-const expressip = require("express-ip");
 const path = require("path");
 const weather = require("./routes/api/weather");
 const pwned = require("./routes/api/pwned");
@@ -17,12 +16,8 @@ app.use(staticFiles);
 
 app.use("/*", staticFiles);
 
-// returns geolocation for default user weather information
-// app.use(expressip.getIpInfoMiddleware);
+
 app.get("/", (req, res) => {
-//   const ipInfo = req.ipInfo;
-//   console.log(ipInfo)
-//   var message = `Hey, you are browsing from ${ipInfo.city}, ${ipInfo.country}`;
   res.send("hai. welcome to the backend. ;)");
 });
 
