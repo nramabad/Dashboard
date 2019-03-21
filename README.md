@@ -21,7 +21,7 @@ Features for imminent implementation include weather forecasts by location and s
 
 #### API Integration
 
-The use of APIs for application data enables the use of a simple, lightweight Node backend. Some data comes from API calls in the frontend API Utils where a given API's Cross-Origin Resource Sharing (CORS) settings permit while others must be called from the backend. This created some interesting challenges that shall be discussed in greater detail later. However, none of the APIs required authorization tokens of any kind and no API enforced notable rate limits for calls from an IP Address.
+The use of APIs for application data enables the use of a simple, lightweight Node backend. Some data comes from API calls in the frontend API Utils where a given API's Cross-Origin Resource Sharing (CORS) settings permit while others must be called from the backend. This created some interesting challenges that shall be discussed in greater detail later. However, none of the APIs required authorization tokens of any kind and no notable API-enforced rate limits for calls from an IP Address.
 
 Both, the Robohash and the Unsplash Image APIs support direct API URL embedding in <IMG> tags, making integration exceptionally simple. The Newton API for arithmetic evaluations expressly supports CORS. This allowed all Newton API calls to occur in the frontend API Utils.
   
