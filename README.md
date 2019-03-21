@@ -25,7 +25,7 @@ The use of APIs for application data enables the use of a simple, lightweight No
 
 Both, the Robohash and the Unsplash Image APIs support direct API URL embedding in `<IMG>` tags, making integration exceptionally simple. The Newton API for arithmetic evaluations expressly supports CORS. This allowed all Newton API calls to occur in the frontend API Utils.
   
-Conversely, the Metaweather API expressly forbids CORS necessitating route in the Node backend. Frontend API Utils for weather/location data, in turn, access API data through these backend routes. 
+Conversely, the Metaweather API expressly forbids CORS necessitating routes in the Node backend. Frontend API Utils for weather/location data, in turn, access API data through these backend routes. 
 
 Now, the HaveIBeenPwned API documentation unequivocally expresses the lack of authorization, API rate limits or blocking of CORS application accessability across ALL endpoints.
 
