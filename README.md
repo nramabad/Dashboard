@@ -1,7 +1,7 @@
 # Dashboard
 #### Creator: [Navaneet (Nav) Ramabadran](https://www.navaneet.me)
 
-Dashboard is a web application, suitable as a default homepage, that assists users by consolidating basic tools in one clean, user-friendly page. The current major widgets come in two flavors, personal identity protection/security and a simplified WolframAlpha analogue. More features are just around the corner!
+Dashboard is a web application, suitable as a default homepage, that assists users by consolidating basic tools into one clean, user-friendly page. The current major widgets come in two flavors, personal identity protection/security and a simplified WolframAlpha analogue. More features are just around the corner!
 
 [Demo Dashboard Now!](https://nav-dashboard.herokuapp.com/#/)
 
