@@ -47,6 +47,8 @@ The Pwned component for Domain takes advantage of DangerouslySetInnerHTML to dir
 
 Another future implementation is to fix some of the edge-cases and bugs in the Arithmetic component's math beautifiation function. To rectify these issues, the logic of function `beautifyMath()` will change. It currently maps the incoming math expression string to an HTML Object Node List. Future versions will use document.createElement("div") and recursively appendChild to better create this beautified math DOM element and cover all edge cases.
 
+In the same vein, inputs for the Arithmetic functionality could be checked for valid parantheses, using a stack.
+
 A few User Interface tweaks would rely improve the overall flow, allowing user's to seemlessly flow forward and backward between widgets, menus and results. Finally, User Authentication with a proper database would allow repeat users save and persist their customizations and choices. They could even save prior work, API usage and results.
 
 Other neat features would be a digital clock, notepad in the info box and inspirational quotes.
