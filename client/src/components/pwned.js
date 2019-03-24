@@ -13,6 +13,7 @@ class Pwned extends React.Component {
                 this.props.fetchEmail(query);
                 break;
             case "DOMAIN":
+                // adobe.com, adobe, www.adobe.com should all be valid inputs
                 if (query.includes(".")) {
                     query = query.split(".").slice(-2, -1);
                 }
