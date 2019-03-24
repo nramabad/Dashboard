@@ -1,7 +1,7 @@
 # Dashboard
-#### Creator: [Navaneet (Nav) Ramabadran](www.navaneet.me)
+#### Creator: [Navaneet (Nav) Ramabadran](https://www.navaneet.me)
 
-Dashboard is a web application, suitable as a default homepage, that assists users by consolidating basic tools in one clean, user-friendly page. The current major widgets come in two flavors, personal identity protection/security and a simplified WolframAlpha analogue. More features are just around the corner!
+Dashboard is a web application, suitable as a default homepage, that assists users by consolidating basic tools into one clean, user-friendly page. The current app's major widgets come in two flavors, personal identity protection/security and a simplified WolframAlpha analogue. More features are just around the corner!
 
 [Demo Dashboard Now!](https://nav-dashboard.herokuapp.com/#/)
 
@@ -21,11 +21,11 @@ Features for imminent implementation include weather forecasts by location and s
 
 #### API Integration
 
-The use of APIs for application data enables the use of a simple, lightweight Node backend. Some data comes from API calls in the frontend API Utils where a given API's Cross-Origin Resource Sharing (CORS) settings permit while others must be called from the backend. This created some interesting challenges that shall be discussed in greater detail later. However, none of the APIs required authorization tokens of any kind and no API enforced notable rate limits for calls from an IP Address.
+The use of APIs for application data enables the use of a simple, lightweight Node backend. Some data comes from API calls in the frontend API Utils where a given API's Cross-Origin Resource Sharing (CORS) settings permit while others must be called from the backend. This created some interesting challenges that shall be discussed in greater detail later. However, none of the APIs required authorization tokens of any kind and no notable API-enforced rate limits for calls from an IP Address.
 
-Both, the Robohash and the Unsplash Image APIs support direct API URL embedding in <IMG> tags, making integration exceptionally simple. The Newton API for arithmetic evaluations expressly supports CORS. This allowed all Newton API calls to occur in the frontend API Utils.
+Both, the Robohash and the Unsplash Image APIs support direct API URL embedding in `<IMG>` tags, making integration exceptionally simple. The Newton API for arithmetic evaluations expressly supports CORS. This allowed all Newton API calls to occur in the frontend API Utils.
   
-Conversely, the Metaweather API expressly forbids CORS necessitating route in the Node backend. Frontend API Utils for weather/location data, in turn, access API data through these backend routes. 
+Conversely, the Metaweather API expressly forbids CORS necessitating routes in the Node backend. Frontend API Utils for weather/location data, in turn, access API data through these backend routes. 
 
 Now, the HaveIBeenPwned API documentation unequivocally expresses the lack of authorization, API rate limits or blocking of CORS application accessability across ALL endpoints.
 
@@ -35,11 +35,11 @@ This, however, did require a re-think after initial API tests indicated a mismat
 
 #### UI/UX Choices
 
-The Momentum browser extension for Chrome was a strong inspiration. Dashboard's clean interface and scenic imagery makes it a natural choice for browser homepage. However, it contains tools more powerful than Momentum. By retaining a single information box that toggles for various widgets/tools, Dashboard remains approachable to the user while lending itself to addition of more powerful tools over time.
+The Momentum browser extension for Chrome was a strong inspiration. Dashboard's clean interface and scenic imagery makes it a natural choice for browser homepage. However, it contains tools more powerful than Momentum. By retaining a single information box that toggles for various widgets/tools, Dashboard remains approachable to the user while lending itself to the addition of more powerful tools over time.
 
 ### Future Plans
 
-Weather implementation is a large feature to be rolled out soon. Everything necessary for its implementation apart from the React Component already exists in the Dashboard codebase. Users will be able to get weather by location. Users could enter a the partial or full name of a city/destination and choose from a list of location query matches. Alternatively, users that enable the application's access of their geolocation can rely on the application to do all the work. Geolocation data will automatically grab and find relevant weather forecasts. Finally, a weather peak component will exist in the top right corner to indicate today's prevailing weather.
+Weather implementation is a large feature to be rolled out soon. Everything necessary for its implementation apart from the React Component already exists in the Dashboard codebase. Users will be able to get weather by location. Users will be able to enter the partial or full name of a city/destination and choose from a list of location query matches. Alternatively, users that enable the application's access of their geolocation can rely on the application to do all the work. Geolocation data will automatically grab and find relevant weather forecasts. Finally, a weather peak component will exist in the top right corner to indicate today's prevailing weather.
 
 Currently error handling is not explicitly performed. Future work would change backend routes to send JSON errors and frontend reducers to correctly handle errors across all actions. From there, errors can be displayed appropriately in the component.
 
