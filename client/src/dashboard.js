@@ -32,7 +32,7 @@ const TRIG_OPS = {
   ARCSIN: "Inverse Sine of numerical value",
   ARCTAN: "Inverse Tangent of numerical value",
   ABS: "Absolute value of numerical value",
-  LOG: "Logarithm of numerical value"
+  LOG: "Logarithm base b of numerical value a (Format: b|a)"
 };
 
 class Dashboard extends Component {
