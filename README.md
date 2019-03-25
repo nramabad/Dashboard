@@ -43,7 +43,7 @@ Weather implementation is a large feature to be rolled out soon. Everything nece
 
 Currently error handling is not explicitly performed. Future work would change backend routes to send JSON errors and frontend reducers to correctly handle errors across all actions. From there, errors can be displayed appropriately in the component.
 
-The Pwned component for Domain takes advantage of DangerouslySetInnerHTML to directly insert a string of HTML from the HaveIBeenPwned Domain API Endpoint into the information box. While this provide some performance benefits in React, it makes the component susceptible to cross-site scripting in the event HaveIBeenPwned is "pwned" by a malicious agent. To rectify this, a future plan would be to sanatize the data coming through this API endpoint.
+The Pwned component for Domain takes advantage of DangerouslySetInnerHTML to directly insert a string of HTML from the HaveIBeenPwned Domain API Endpoint into the information box. While this provide some performance benefits in React, it makes the component susceptible to cross-site scripting in the event HaveIBeenPwned is "pwned" by a malicious agent. To rectify this, a future plan would be to sanitize the data coming through this API endpoint.
 
 Another future implementation is to fix some of the edge-cases and bugs in the Arithmetic component's math beautifiation function. To rectify these issues, the logic of function `beautifyMath()` will change. It currently maps the incoming math expression string to an HTML Object Node List. Future versions will use document.createElement("div") and recursively appendChild to better create this beautified math DOM element and cover all edge cases.
 
