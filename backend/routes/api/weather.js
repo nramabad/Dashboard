@@ -1,6 +1,7 @@
 const express = require("express");
-const router = express.Router();
 const request = require("request");
+
+const router = express.Router();
 
 router.get("/test", (req, res) => res.json({ msg: "This is the weather test route" }));
 
@@ -23,7 +24,7 @@ router.get('/search/:location', (req, res) => {
                }
       }
     );
-}); 
+});
 
 router.get('/:id', (req, res) => {
   request(
@@ -43,6 +44,6 @@ router.get('/:id', (req, res) => {
              }
     }
   );
-}); 
+});
 
 module.exports = router;
