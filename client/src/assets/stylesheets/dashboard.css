@@ -28,6 +28,36 @@
   color: white;
 }
 
+@media only screen and (min-width: 1600px) {
+  .App-header {
+    background-image: url('https://source.unsplash.com/2000x1125/?nature');
+  }
+}
+
+@media only screen and (min-width: 2000px) {
+  .App-header {
+    background-image: url('https://source.unsplash.com/2400x1350/?nature');
+  }
+}
+
+@media only screen and (min-width: 2400px) {
+  .App-header {
+    background-image: url('https://source.unsplash.com/3200x1800/?nature');
+  }
+}
+
+@media only screen and (min-width: 3200px) {
+  .App-header {
+    background-image: url('https://source.unsplash.com/6400x3600/?nature');
+  }
+}
+
+@media only screen and (min-width: 6400px) {
+  .App-header {
+    background-image: url('https://source.unsplash.com/12800x7200/?nature');
+  }
+}
+
 .App-header img {
   margin-bottom: 30px;
 }
@@ -73,7 +103,7 @@
 .search-bar {
   display: flex;
   flex-direction: row;
-  
+
 }
 
 .search-bar span {
