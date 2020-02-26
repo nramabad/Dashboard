@@ -24,7 +24,7 @@ const transcribe = (res, audio) => {
     }).then(({ data }) => {
         return data;
     }).catch(error => {
-        res.status(500).json({error: 'Experiencing difficulties contacting Deepgram API...'})
+        res.status(500).json(error);
     });
 };
 
@@ -37,15 +37,17 @@ router.get('/random', (req, res) => {
        .get('https://listen-api.listennotes.com/api/v2/just_listen')
        .headers({'User-Agent': 'dashboard', 'X-ListenAPI-Key': apiKey, 'Accept': 'application/json', 'Content-Type': 'application/json'})
        .then(({audio, image, title, publisher, audio_length_sec}) => {
-           res.json({ title, publisher, audio, image, length: audio_length_sec, transcription: transcribe(res, audio)});
+           res.json(Object.assign({}, transcribe(res, audio), {title, publisher, audio, image, length: audio_length_sec}));
        });
 });
 
+// TODO: move to frontend
 router.get('/:search', (req, res) => {
     unirest
         .get(`https://listen-api.listennotes.com/api/v2/typeahead?q=${req.params.query}`)
         .then(() => {
             res.json({});
+        });
 });
 
 module.exports = router;

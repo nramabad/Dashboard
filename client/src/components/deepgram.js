@@ -1,7 +1,7 @@
 import React from "react";
 import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchEmail, fetchDomain } from "../actions/pwned_actions";
+import {fetchTranscription} from "../actions/deepgram_actions";
 
 class Deepgram extends React.Component {
     // componentDidMount() {
@@ -17,17 +17,8 @@ class Deepgram extends React.Component {
     }
 }
 
-const mapStateToProps = state => {
-    return {
-        email: state.entities.pwned.email,
-        domain: state.entities.pwned.domain
-    };
-};
-
-const mapDispatchToProps = dispatch => ({
-    fetchDomain: domain => dispatch(fetchDomain(domain)),
-    fetchEmail: email => dispatch(fetchEmail(email))
-});
+const mapDispatchToProps = dispatch => ({ fetchTranscription: deepgram => dispatch(fetchTranscription(deepgram)) });
+const mapStateToProps = ({ entities: { deepgram }}) => ({ deepgram });
 
 export default withRouter(
     connect(
