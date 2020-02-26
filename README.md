@@ -7,7 +7,7 @@ Dashboard is a web application, suitable as a default homepage, that assists use
 
 ### Technologies
 
-React.js, Redux.js, Express.js, Node.js, Robohash API, Metaweather API, Newton Microservice API, HaveIBeenPwned API, Unsplash Image API
+React.js, Redux.js, Express.js, Node.js, Deepgram API, ListenNotes API, Robohash API, Metaweather API, Newton Microservice API, HaveIBeenPwned API, Unsplash Image API
 
 ### Features
 
@@ -29,7 +29,7 @@ Conversely, the Metaweather API expressly forbids CORS necessitating routes in t
 
 Now, the HaveIBeenPwned API documentation unequivocally expresses the lack of authorization, API rate limits or blocking of CORS application accessability across ALL endpoints.
 
-This is not true. As of January 27th, the breached account endpoint no longer supports CORS and requires API requests to each include a User-Agent header. This does not apply for other endpoints such as the Domain endpoint which remains fully CORS-enabled. 
+This is not true. As of January 27th 2019, the breached account endpoint no longer supports CORS and requires API requests to each include a User-Agent header. This does not apply for other endpoints such as the Domain endpoint which remains fully CORS-enabled. 
 
 This, however, did require a re-think after initial API tests indicated a mismatch between error status codes the API returned with the response data and documentation on the endpoint.
 
