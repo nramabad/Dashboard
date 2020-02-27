@@ -8,6 +8,4 @@ export const receiveTranscription = result => ({
 });
 
 export const fetchTranscription = () => dispatch =>
-    APIUtil.getTranscription().then(result =>
-        dispatch(receiveTranscription(result))
-    );
+    APIUtil.getTranscription().then(result => dispatch(receiveTranscription(result)));

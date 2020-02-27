@@ -4,12 +4,12 @@ const unirest = require("unirest");
 const { username, password, apiKey } = require("../../secrets");
 
 const router = express.Router();
+const url = 'https://brain.deepgram.com/v2/listen';
 
-let url = 'https://brain.deepgram.com/v2/listen';
-
-const transcribe = (res, audio) => {
+const transcribe = (res, audio, podcastData) => {
     axios({
         method: 'post',
+        timeout: 3600000,
         url,
         auth: {
             username,
@@ -20,9 +20,9 @@ const transcribe = (res, audio) => {
         },
         data: {
             url: audio
-        }
+}
     }).then(({ data }) => {
-        return data;
+        res.json(Object.assign({}, podcastData, data));
     }).catch(error => {
         res.status(500).json(error);
     });
@@ -36,8 +36,8 @@ router.get('/random', (req, res) => {
    unirest
        .get('https://listen-api.listennotes.com/api/v2/just_listen')
        .headers({'User-Agent': 'dashboard', 'X-ListenAPI-Key': apiKey, 'Accept': 'application/json', 'Content-Type': 'application/json'})
-       .then(({audio, image, title, publisher, audio_length_sec}) => {
-           res.json(Object.assign({}, transcribe(res, audio), {title, publisher, audio, image, length: audio_length_sec}));
+       .then(({ body: { audio, image, title, publisher, audio_length_sec } }) => {
+           transcribe(res, audio, { image, title, publisher, audio_length_sec })
        });
 });
 

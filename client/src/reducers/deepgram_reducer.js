@@ -5,7 +5,7 @@ const emailReducer = (state = null, action) => {
 
     switch (action.type) {
         case RECEIVE_TRANSCRIPTION:
-            return action.deepgram.data;
+            return action.result.data;
         default:
             return state;
     }

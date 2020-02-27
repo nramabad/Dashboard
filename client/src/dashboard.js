@@ -2,16 +2,18 @@ import React, { Component } from 'react';
 import './assets/stylesheets/dashboard.css';
 import Arithmetic from './components/arithmetic';
 import Pwned from './components/pwned';
-// For future weather implementation!
+import Deepgram from "./components/deepgram";
+// TODO: For future weather implementation!
 // import Weather from './components/weather';
 // import WeatherPeak from "./components/weather_peak";
 
 const TYPES = {
-  NAME: "Type your name to make a new robot...", 
-  EMAIL: "Check if an e-mail has been pwned...", 
-  DOMAIN: "Check if a website domain has been pwned...", 
-  LOCATION: "Weather feature coming soon...", 
-  MATH: "Evaluate an arithmetic expression..."
+  NAME: "Type your name to make a new robot...",
+  EMAIL: "Check if an e-mail has been pwned...",
+  DOMAIN: "Check if a website domain has been pwned...",
+  WEATHER: "Weather feature coming soon...",
+  MATH: "Evaluate an arithmetic expression...",
+  DEEPGRAM: "Search for a podcast..."
 }
 
 const ALG_OPS = {
@@ -149,6 +151,8 @@ class Dashboard extends Component {
         ) : (
           <div className="option-height">{this.mathOperations()}</div>
         );
+      case "DEEPGRAM":
+        return <Deepgram />
       default:
         return noShow;
     }
@@ -162,12 +166,12 @@ class Dashboard extends Component {
     // onClick fn to set the selected math operation and inputted expression
     const setMath = (option) =>
       this.setState({ operation: option.toLowerCase(), math: query });
-    
-    // buttons for Calculus operations 
+
+    // buttons for Calculus operations
     let alg_ops = Object.keys(ALG_OPS).map((option, idx) => (
-      <button 
-        key={idx} 
-        onClick={() => setMath(option)} 
+      <button
+        key={idx}
+        onClick={() => setMath(option)}
         className="option">
         {ALG_OPS[option]}
       </button>
@@ -240,7 +244,7 @@ class Dashboard extends Component {
             </span>
 
           </div>
-          
+
           <div className="info-box">{this.dialogueBox()}</div>
         </header>
       </div>

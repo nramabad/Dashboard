@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchMath } from "../actions/math_actions";
 
@@ -18,7 +17,7 @@ class Arithmetic extends React.Component {
 
   beautifyMath(expression) {
     // boolean for when a value should be in superscript
-    let superScript = false; 
+    let superScript = false;
 
     // an array of mapped react objects for prettified math expressions
     const prettyExpression = [...expression].map((ch, idx) => {
@@ -47,7 +46,7 @@ class Arithmetic extends React.Component {
     });
     return prettyExpression;
   }
-  
+
   render() {
     if (!this.props || !this.props.math) {
       return (<div className="small-show">Loading...</div>)
@@ -79,9 +78,4 @@ const mapDispatchToProps = dispatch => ({
     fetchMath: (op, exp) => dispatch(fetchMath(op, exp))
 });
 
-export default withRouter(
-  connect(
-    mapStateToProps,
-    mapDispatchToProps
-  )(Arithmetic)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Arithmetic);

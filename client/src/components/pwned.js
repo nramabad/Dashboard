@@ -1,5 +1,4 @@
 import React from "react";
-import { withRouter } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchEmail, fetchDomain } from "../actions/pwned_actions";
 
@@ -37,7 +36,7 @@ class Pwned extends React.Component {
                     }
                     this.props.fetchDomain(query);
                     break;
-                default: 
+                default:
                     break;
             }
         }
@@ -45,7 +44,7 @@ class Pwned extends React.Component {
 
     render() {
         const { query, queryType } = this.props;
-        
+
         if (this.props === undefined) {
             return <div className="small-show">Loading...</div>;
         } else if (this.props[queryType.toLowerCase()] === null) {
@@ -66,7 +65,7 @@ class Pwned extends React.Component {
         const toHTML = `<section className='pwned' >
                             ${this.props[queryType.toLowerCase()].Description}
                         </section>`;
-                        
+
         return (<span id="embedded-html" dangerouslySetInnerHTML={{ __html: toHTML }} />);
     }
 }
@@ -83,9 +82,4 @@ const mapDispatchToProps = dispatch => ({
     fetchEmail: email => dispatch(fetchEmail(email))
 });
 
-export default withRouter(
-    connect(
-        mapStateToProps,
-        mapDispatchToProps
-    )(Pwned)
-);
+export default connect(mapStateToProps, mapDispatchToProps)(Pwned);
