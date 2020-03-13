@@ -12,8 +12,8 @@ class Deepgram extends React.Component {
     // }
 
     render() {
-        console.log(this.props);
-        return <></>
+        if (this.props.deepgram) return <>{this.props.deepgram.results.channels[0].alternatives[0].transcript}</>;
+        return <img id="loading" src="https://i.pinimg.com/originals/ac/44/71/ac4471291c620d8dd47697a1d8da4975.gif" alt="Loading..." />
     }
 }
 

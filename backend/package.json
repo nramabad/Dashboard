@@ -20,13 +20,18 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "express-ip": "^1.0.3",
+    "fs": "^0.0.1-security",
+    "googleapis": "39",
     "node-sass": "^4.11.0",
+    "path": "^0.12.7",
+    "stream": "^0.0.2",
     "unirest": "^0.6.0"
   },
   "engines": {
     "node": "13.9.0"
   },
   "devDependencies": {
+    "multer": "^1.4.2",
     "nodemon": "^1.18.10",
     "request": "^2.88.2"
   }
